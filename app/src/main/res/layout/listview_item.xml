@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/manuimage"
+        android:layout_width="72dp"
+        android:layout_height="122dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="58dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/menuname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="메뉴명"
+            android:textColor="#000000"
+            android:textSize="24dp" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="가격"
+            android:textColor="#666666"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="주성분"
+            android:textColor="#666666"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/modifybtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="수정" />
+
+        <Button
+            android:id="@+id/delbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modifybtn"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="삭제" />
+    </LinearLayout>
+
+</LinearLayout>
