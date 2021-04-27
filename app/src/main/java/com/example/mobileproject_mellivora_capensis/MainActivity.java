@@ -1,73 +1,67 @@
 package com.example.mobileproject_mellivora_capensis;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
-import com.example.mobileproject_mellivora_capensis.R;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button add;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        add =(Button)findViewById(R.id.add);
-        ListView listview ;
-        ListViewAdapter adapter;
-
-        // Adapter 생성
-        adapter = new ListViewAdapter() ;
-
-        // 리스트뷰 참조 및 Adapter달기
-        listview = (ListView) findViewById(R.id.listview1);
-        listview.setAdapter(adapter);
-
-        // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery),
-                "매운떡볶이", "3500원", "고추장, 쌀떡, 오뎅") ;
-        // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery2),
-                "로제떡볶이", "4000원", "우유, 치즈, 누들떡, 차돌") ;
-        // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery3),
-                "짜장떡볶이", "3000원", "춘장, 밀떡, 계란") ;
-
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                // get item
-                ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
-
-                String titleStr = item.getTitle() ;
-                String descStr = item.getDesc() ;
-                String majorStr = item.getMajor() ;
-                Drawable iconDrawable = item.getIcon() ;
-
-                // TODO : use item data.
-            }
-        }) ;
-
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"추가되었습니다.", Toast.LENGTH_SHORT).show();
-                adapter.addItem(ContextCompat.getDrawable(MainActivity.this, R.drawable.image_gallery),"","", "");
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
-    }
-
-
+//    Button button;
+//
+//    SQLiteDatabase newDB;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//
+//        if (newDB == null) {
+//            String dbName = "new";
+//            openDatabase(dbName);
+//        } else {
+//            Toast.makeText(this, "test", Toast.LENGTH_LONG).show();
+//        }
+//
+//        button = (Button) findViewById(R.id.main_button);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivityForResult(intent, 101);
+//            }
+//        });
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == 101 && resultCode == RESULT_OK) {
+//            String userId = data.getStringExtra("userId");
+//
+//            Intent intent = new Intent(getApplicationContext(), SubjectActivity.class);
+//            intent.putExtra("userId", userId);
+//            startActivityForResult(intent, 102);
+//        } else {
+//            button.setText("로그인에 실패했습니다.\n 다시 로그인 해주세요");
+//        }
+//    }
+//
+//    public void openDatabase(String dbName) {
+//        DBHelperTest helper = new DBHelperTest(this, dbName, null, 1);
+//        newDB = helper.getWritableDatabase();
+//    }
 }
