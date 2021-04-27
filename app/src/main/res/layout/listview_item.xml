@@ -6,7 +6,7 @@
     >
 
     <ImageView
-        android:id="@+id/manuimage"
+        android:id="@+id/menuimage"
         android:layout_width="72dp"
         android:layout_height="122dp"
         android:layout_weight="1" />
@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:enabled="true"
             android:gravity="center_vertical"
             android:text="메뉴명"
             android:textColor="#000000"
@@ -33,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:enabled="true"
             android:text="가격"
             android:textColor="#666666"
             android:textSize="16dp" />
@@ -42,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:enabled="true"
             android:text="주성분"
             android:textColor="#666666"
             android:textSize="16dp" />
@@ -66,6 +69,17 @@
             android:layout_weight="1"
             android:background="@android:drawable/btn_default_small"
             android:text="삭제" />
+
+        <Button
+            android:id="@+id/savebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/btn_default_small"
+            android:text="저장" />
     </LinearLayout>
 
 </LinearLayout>

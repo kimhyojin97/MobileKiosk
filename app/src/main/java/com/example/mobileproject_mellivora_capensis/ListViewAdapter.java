@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,7 +50,7 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.manuimage) ;
+        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.menuimage) ;
         TextView titleTextView = (TextView) convertView.findViewById(R.id.menuname) ;
         TextView descTextView = (TextView) convertView.findViewById(R.id.price) ;
         TextView majorTextView = (TextView) convertView.findViewById(R.id.major) ;
@@ -63,10 +64,20 @@ public class ListViewAdapter extends BaseAdapter {
         descTextView.setText(listViewItem.getDesc());
         majorTextView.setText(listViewItem.getMajor());
 
+        EditText titleEditView = (EditText)convertView.findViewById(R.id.menuname);
+        EditText descEditView = (EditText)convertView.findViewById(R.id.price);
+        EditText majorEditView = (EditText)convertView.findViewById(R.id.major);
+
         Button modifyBtn = (Button)convertView.findViewById(R.id.modifybtn);
         modifyBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(context, "수정합니다.", Toast.LENGTH_SHORT).show();
+                titleEditView.setEnabled(true);
+                titleEditView.setClickable(true);
+                descEditView.setEnabled(true);
+                descEditView.setClickable(true);
+                majorEditView.setEnabled(true);
+                majorEditView.setClickable(true);
             }
         });
 
@@ -79,6 +90,19 @@ public class ListViewAdapter extends BaseAdapter {
                     listViewItemList.remove(pos);
                     updateReceiptsList(listViewItemList);
                 }
+            }
+        });
+
+        Button saveBtn = (Button)convertView.findViewById(R.id.savebtn);
+        saveBtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(context, "저장합니다.", Toast.LENGTH_SHORT).show();
+                titleEditView.setEnabled(false);
+                titleEditView.setClickable(false);
+                descEditView.setEnabled(false);
+                descEditView.setClickable(false);
+                majorEditView.setEnabled(false);
+                majorEditView.setClickable(false);
             }
         });
 

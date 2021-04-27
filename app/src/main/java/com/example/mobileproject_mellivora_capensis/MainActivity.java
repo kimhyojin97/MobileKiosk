@@ -14,12 +14,13 @@ import android.widget.Toast;
 import com.example.mobileproject_mellivora_capensis.R;
 
 public class MainActivity extends AppCompatActivity {
+    private Button add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        add =(Button)findViewById(R.id.add);
         ListView listview ;
         ListViewAdapter adapter;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         listview = (ListView) findViewById(R.id.listview1);
         listview.setAdapter(adapter);
 
-        // 첫 번째 아이템 추가.s
+        // 첫 번째 아이템 추가.
         adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery),
                 "매운떡볶이", "3500원", "고추장, 쌀떡, 오뎅") ;
         // 두 번째 아이템 추가.
@@ -55,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
                 // TODO : use item data.
             }
         }) ;
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"추가되었습니다.", Toast.LENGTH_SHORT).show();
+                adapter.addItem(ContextCompat.getDrawable(MainActivity.this, R.drawable.image_gallery),"","", "");
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
     }
 
 
