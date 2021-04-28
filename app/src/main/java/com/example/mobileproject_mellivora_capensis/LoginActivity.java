@@ -41,14 +41,14 @@ public class LoginActivity extends AppCompatActivity {
     boolean userExist;
 
     SQLiteDatabase newDB;
-    DBHelperTest helper;
+    LoginDBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        helper = new DBHelperTest(this, "new", null, 1);
+        helper = new LoginDBHelper(this, "new", null, 1);
 
 
         loginButton = (Button) findViewById(R.id.login_button);
@@ -73,6 +73,8 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), CostomerSelect.class);
                     intent.putExtra("userId", userId);
                     setResult(Activity.RESULT_OK, intent);
+                    startActivity(intent);
+
                 } else {
                     Toast.makeText(LoginActivity.this, "아이디 혹은 비밀번호가" +
                             "없거나 잘못되었습니다.", Toast.LENGTH_SHORT).show();
@@ -91,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void searchData(String isId, String isPass) {
         newDB = helper.getReadableDatabase();
-        String sql = ("select userId, password,sName from test");
+        String sql = ("select userId, password, sName from test");
         Cursor cursor = newDB.rawQuery(sql, null);
 
         for (int i = 0; i < cursor.getCount(); i++) {

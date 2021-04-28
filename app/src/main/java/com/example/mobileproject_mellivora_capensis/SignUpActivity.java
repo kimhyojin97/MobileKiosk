@@ -21,14 +21,14 @@ public class SignUpActivity extends AppCompatActivity {
     EditText sName;
 
     SQLiteDatabase newDB;
-    DBHelperTest helper;
+    LoginDBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        helper = new DBHelperTest(this, "new", null, 1);
+        helper = new LoginDBHelper(this, "new", null, 1);
 
         userId = (EditText) findViewById(R.id.sign_id);
         userPassword = (EditText) findViewById(R.id.sign_password);
@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         newDB = helper.getWritableDatabase();
 
         String sql = ("insert into test(userId, password, sName) values " +
-                "(" + "'" + id + "'" + "," + "'" + password + "'" + sName + ")");
+                "(" + "'" + id + "'" + "," + "'" + password + "'" + "," + "'" + sName + "'" + ")");
 
         newDB.execSQL(sql);
     }
