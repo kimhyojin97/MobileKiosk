@@ -1,5 +1,6 @@
-package com.example.mobileproject_mellivora_capensis;
+package com.example.order_menu;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +10,13 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 public class OrderSheet extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
         return inflater.inflate(R.layout.ordersheet_fragment, container, false);
-
     }
 
     public void onStart(){
@@ -36,11 +38,10 @@ public class OrderSheet extends Fragment {
             menus.setText(args.getString("menus"));
 
             TextView request = getActivity().findViewById(R.id.request);
-            menus.setText(args.getString("request"));
+            request.setText(args.getString("request"));
 
             TextView time = getActivity().findViewById(R.id.time);
-            menus.setText(args.getString("time"));
-
+            time.setText(args.getString("time"));
         }
     }
 
