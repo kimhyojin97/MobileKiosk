@@ -4,29 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -70,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "입력이 잘못되었습니다.", Toast.LENGTH_SHORT);
 
                 if (userExist) {
-                    Intent intent = new Intent(getApplicationContext(), CostomerSelect.class);
+                    Intent intent = new Intent(getApplicationContext(), CustomerMain.class);
                     intent.putExtra("userId", userId);
                     setResult(Activity.RESULT_OK, intent);
                     startActivity(intent);
@@ -106,6 +92,12 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), StartSelect.class);
+        startActivity(intent);
     }
 }
 

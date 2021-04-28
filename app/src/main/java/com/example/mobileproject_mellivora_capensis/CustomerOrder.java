@@ -28,7 +28,6 @@ public class CustomerOrder extends AppCompatActivity implements OrderList.OnOrde
         ft.replace(R.id.ordersheet_fragment, newFragment);
         ft.addToBackStack(null);
         ft.commit();
-
     }
 
 
