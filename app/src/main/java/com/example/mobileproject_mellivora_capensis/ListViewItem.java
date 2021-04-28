@@ -18,7 +18,7 @@ public class ListViewItem {
         descStr = desc ;
     }
     public void setMajor(String major) {
-        descStr = major ;
+        majorStr = major ;
     }
 
     public Drawable getIcon() {

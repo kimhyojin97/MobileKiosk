@@ -7,15 +7,16 @@
 
     <ImageView
         android:id="@+id/menuimage"
-        android:layout_width="72dp"
+        android:layout_width="126dp"
         android:layout_height="122dp"
         android:layout_weight="1" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="58dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_width="323dp"
+        android:layout_height="202dp"
+        android:layout_weight="3"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
         <EditText
@@ -49,37 +50,46 @@
             android:textColor="#666666"
             android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/modifybtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="@android:drawable/btn_default_small"
-            android:text="수정" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_weight="3"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/delbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modifybtn"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            android:background="@android:drawable/btn_default_small"
-            android:text="삭제" />
+            <Button
+                android:id="@+id/modifybtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default_small"
+                android:text="수정" />
 
-        <Button
-            android:id="@+id/savebtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:background="@android:drawable/btn_default_small"
-            android:text="저장" />
+            <Button
+                android:id="@+id/delbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/modifybtn"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default_small"
+                android:text="삭제" />
+
+            <Button
+                android:id="@+id/savebtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/btn_default_small"
+                android:text="저장" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
