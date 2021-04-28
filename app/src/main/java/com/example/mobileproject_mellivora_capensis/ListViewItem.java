@@ -3,12 +3,12 @@ package com.example.mobileproject_mellivora_capensis;
 import android.graphics.drawable.Drawable;
 
 public class ListViewItem {
-    private Drawable iconDrawable ;
+    private int iconDrawable ;
     private String titleStr ;
     private String descStr ;
     private String majorStr ;
 
-    public void setIcon(Drawable icon) {
+    public void setIcon(int icon) {
         iconDrawable = icon ;
     }
     public void setTitle(String title) {
@@ -21,7 +21,7 @@ public class ListViewItem {
         majorStr = major ;
     }
 
-    public Drawable getIcon() {
+    public int getIcon() {
         return this.iconDrawable ;
     }
     public String getTitle() {

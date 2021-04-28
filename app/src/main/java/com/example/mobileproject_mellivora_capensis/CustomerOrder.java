@@ -1,5 +1,6 @@
 package com.example.mobileproject_mellivora_capensis;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,11 @@ public class CustomerOrder extends AppCompatActivity implements OrderList.OnOrde
         ft.replace(R.id.ordersheet_fragment, newFragment);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), CustomerMain.class);
+        startActivity(intent);
     }
 
 

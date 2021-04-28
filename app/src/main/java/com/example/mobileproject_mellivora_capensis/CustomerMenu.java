@@ -30,13 +30,13 @@ public class CustomerMenu extends AppCompatActivity {
         listview.setAdapter(adapter);
 
         // 첫 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery),
+        adapter.addItem(R.drawable.image_gallery,
                 "매운떡볶이", "3500원", "고추장, 쌀떡, 오뎅") ;
         // 두 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery2),
+        adapter.addItem(R.drawable.image_gallery2,
                 "로제떡볶이", "4000원", "우유, 치즈, 누들떡, 차돌") ;
         // 세 번째 아이템 추가.
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.image_gallery3),
+        adapter.addItem(R.drawable.image_gallery3,
                 "짜장떡볶이", "3000원", "춘장, 밀떡, 계란") ;
 
 
@@ -49,7 +49,7 @@ public class CustomerMenu extends AppCompatActivity {
                 String titleStr = item.getTitle() ;
                 String descStr = item.getDesc() ;
                 String majorStr = item.getMajor() ;
-                Drawable iconDrawable = item.getIcon() ;
+                int iconDrawable = item.getIcon();
 
                 // TODO : use item data.
             }
@@ -59,7 +59,7 @@ public class CustomerMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CustomerMenu.this,"추가되었습니다.", Toast.LENGTH_SHORT).show();
-                adapter.addItem(ContextCompat.getDrawable(CustomerMenu.this, R.drawable.image_gallery),"","", "");
+                adapter.addItem(R.drawable.image_gallery,"","", "");
                 adapter.notifyDataSetChanged();
             }
         });

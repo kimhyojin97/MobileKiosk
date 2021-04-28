@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
@@ -59,7 +61,7 @@ public class ListViewAdapter extends BaseAdapter {
         ListViewItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        iconImageView.setImageDrawable(listViewItem.getIcon());
+        iconImageView.setImageResource(listViewItem.getIcon());
         titleTextView.setText(listViewItem.getTitle());
         descTextView.setText(listViewItem.getDesc());
         majorTextView.setText(listViewItem.getMajor());
@@ -103,6 +105,12 @@ public class ListViewAdapter extends BaseAdapter {
                 descEditView.setClickable(false);
                 majorEditView.setEnabled(false);
                 majorEditView.setClickable(false);
+                listViewItemList.get(listViewItemList.size()-1).setIcon(R.drawable.image_gallery);
+                listViewItemList.get(listViewItemList.size()-1).setTitle(titleEditView.getText().toString().trim());
+                listViewItemList.get(listViewItemList.size()-1).setDesc(descEditView.getText().toString().trim());
+                listViewItemList.get(listViewItemList.size()-1).setMajor(majorEditView.getText().toString().trim());
+//                addItem(R.drawable.image_gallery,titleEditView.getText().toString().trim(),descEditView.getText().toString().trim(),
+//                        majorEditView.getText().toString().trim());
             }
         });
 
@@ -122,7 +130,7 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable icon, String title, String desc, String major) {
+    public void addItem(int icon, String title, String desc, String major) {
         ListViewItem item = new ListViewItem();
 
         item.setIcon(icon);

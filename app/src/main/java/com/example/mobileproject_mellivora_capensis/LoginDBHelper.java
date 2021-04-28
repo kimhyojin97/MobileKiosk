@@ -19,6 +19,12 @@ public class LoginDBHelper extends SQLiteOpenHelper {
                 + " password text, "
                 + " sName text);");
 
+//        String menuTable = "test";
+//        db.execSQL("create table if not exists " + userTable + " (" + " _id integer PRIMARY KEY autoincrement, "
+//                + " menutitle text, "
+//                + " menudesc text, "
+//                + " menu  text);");
+
 //        String userSubjectTable = "test2";
 //        db.execSQL("create table if not exists " + userSubjectTable + " ("
 //                + " _id integer PRIMARY KEY autoincrement, "
