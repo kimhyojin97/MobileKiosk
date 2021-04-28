@@ -1,4 +1,4 @@
-package com.example.order_menu;
+package com.example.mobileproject_mellivora_capensis;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.mobileproject_mellivora_capensis.R;
 
 import java.util.ArrayList;
 

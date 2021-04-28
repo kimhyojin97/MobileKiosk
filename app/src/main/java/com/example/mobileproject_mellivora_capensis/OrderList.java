@@ -1,4 +1,4 @@
-package com.example.order_menu;
+package com.example.mobileproject_mellivora_capensis;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +12,10 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.mobileproject_mellivora_capensis.CustomerOrder;
+import com.example.mobileproject_mellivora_capensis.DBHelperTest;
+import com.example.mobileproject_mellivora_capensis.R;
 
 public class OrderList extends Fragment {
     DBHelperTest dbHelperTest;
