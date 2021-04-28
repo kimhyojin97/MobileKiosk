@@ -1,7 +1,8 @@
-package com.example.mobileproject_mellivora_capensis;
+package com.example.order_menu;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,11 @@ import android.widget.SimpleCursorAdapter;
 import androidx.fragment.app.Fragment;
 
 public class OrderList extends Fragment {
-    com.example.mobileproject_mellivora_capensis.DBHelperTest dbHelperTest;
+    DBHelperTest dbHelperTest;
     ListView listView;
     SQLiteDatabase db;
     Bundle args;
+    int pos = -1;
 
     final static String dbName = "order.db";
     final static int dbVersion = 1;
@@ -30,7 +32,7 @@ public class OrderList extends Fragment {
         View view = inflater.inflate(R.layout.orderlist_fragment, container, false);
         inflater.inflate(R.layout.orderlist_fragment, container, false);
         listView = view.findViewById(R.id.order_list);
-        dbHelperTest = new com.example.mobileproject_mellivora_capensis.DBHelperTest(getActivity(), dbName, null, dbVersion);
+        dbHelperTest = new DBHelperTest(getActivity(), dbName, null, dbVersion);
 
         db = dbHelperTest.getWritableDatabase();
         String sql = "SELECT * FROM test;";
@@ -39,13 +41,20 @@ public class OrderList extends Fragment {
         int[] ints = new int[] {R.id.order_num};
 
         if(cursor.getCount() > 0){
-            SimpleCursorAdapter adapter = new SimpleCursorAdapter(view.getContext(), R.layout.list_block, cursor, strs, ints, 0);
+            SimpleCursorAdapter adapter = new SimpleCursorAdapter(view.getContext(), R.layout.list_block, cursor,
+                    strs, ints, 0);
             listView.setAdapter(adapter);
         }
-        mOrderSelectedListener = (com.example.mobileproject_mellivora_capensis.CustomerOrder)getActivity();
+        mOrderSelectedListener = (CustomerOrder)getActivity();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
                 readData(position);
+                if(pos != -1){
+                    parent.getChildAt(pos).setBackgroundColor(Color.WHITE);
+                }
+                pos = position;
+                view.setBackgroundColor(Color.YELLOW);
+
                 mOrderSelectedListener.onOrderSelected(args);
             }
         });
