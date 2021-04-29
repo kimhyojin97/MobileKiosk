@@ -15,8 +15,6 @@ public class CustomerOrder extends AppCompatActivity implements OrderList.OnOrde
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
         ft.replace(R.id.orderlist_fragment, new OrderList());
-
-        ft.addToBackStack(null);
         ft.commit();
     }
 
@@ -26,7 +24,6 @@ public class CustomerOrder extends AppCompatActivity implements OrderList.OnOrde
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
         ft.replace(R.id.ordersheet_fragment, newFragment);
-        ft.addToBackStack(null);
         ft.commit();
     }
 
