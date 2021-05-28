@@ -23,6 +23,13 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:text="주문 내역"/>
+
+        <Button
+            android:id="@+id/qrselectButton"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="QR코드 생성" />
     </LinearLayout>
 
 

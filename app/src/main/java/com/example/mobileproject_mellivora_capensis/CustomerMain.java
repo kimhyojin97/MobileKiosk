@@ -9,16 +9,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CustomerMain extends AppCompatActivity {
     Button menuButton;
     Button orderButton;
+    Button qrButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
-
         menuButton = (Button)findViewById(R.id.menuselectButton);
         orderButton = (Button)findViewById(R.id.orderselectButton);
+        qrButton = (Button)findViewById(R.id.qrselectButton);
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,11 +40,14 @@ public class CustomerMain extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        startActivity(intent);
+        qrButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), QRCode.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
