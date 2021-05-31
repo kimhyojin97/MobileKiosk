@@ -1,7 +1,10 @@
 package com.example.mobileproject_mellivora_capensis;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,14 +17,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
+import static android.content.Intent.ACTION_GET_CONTENT;
+import static androidx.core.app.ActivityCompat.startActivityForResult;
 
 public class ListViewAdapter extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
     private int nListCnt = 0;
+    MenuDBHelper helper;
+    SQLiteDatabase database;
+    ImageView iconImageView;
 
     public ListViewAdapter() {
 
@@ -45,30 +53,27 @@ public class ListViewAdapter extends BaseAdapter {
         final int pos = position;
         final Context context = parent.getContext();
 
+        helper = new MenuDBHelper(context, "menu.db", null, 1);
+
         // "listview_item" Layout을 inflate하여 convertView 참조 획득.
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.listview_item, parent, false);
         }
 
-        // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.menuimage) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.menuname) ;
-        TextView descTextView = (TextView) convertView.findViewById(R.id.price) ;
-        TextView majorTextView = (TextView) convertView.findViewById(R.id.major) ;
+        iconImageView = (ImageView) convertView.findViewById(R.id.menuimage) ;
+        EditText titleEditView = (EditText)convertView.findViewById(R.id.menuname);
+        EditText descEditView = (EditText)convertView.findViewById(R.id.price);
+        EditText majorEditView = (EditText)convertView.findViewById(R.id.major);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         ListViewItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         iconImageView.setImageResource(listViewItem.getIcon());
-        titleTextView.setText(listViewItem.getTitle());
-        descTextView.setText(listViewItem.getDesc());
-        majorTextView.setText(listViewItem.getMajor());
-
-        EditText titleEditView = (EditText)convertView.findViewById(R.id.menuname);
-        EditText descEditView = (EditText)convertView.findViewById(R.id.price);
-        EditText majorEditView = (EditText)convertView.findViewById(R.id.major);
+        titleEditView.setText(listViewItem.getTitle());
+        descEditView.setText(listViewItem.getDesc());
+        majorEditView.setText(listViewItem.getMajor());
 
         Button modifyBtn = (Button)convertView.findViewById(R.id.modifybtn);
         modifyBtn.setOnClickListener(new OnClickListener() {
@@ -88,9 +93,8 @@ public class ListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Toast.makeText(context, "삭제합니다.", Toast.LENGTH_SHORT).show();
                 if(pos != ListView.INVALID_POSITION){
-
                     listViewItemList.remove(pos);
-                    updateReceiptsList(listViewItemList);
+                    deleteMenu(titleEditView.getText().toString().trim());
                 }
             }
         });
@@ -109,8 +113,16 @@ public class ListViewAdapter extends BaseAdapter {
                 listViewItemList.get(listViewItemList.size()-1).setTitle(titleEditView.getText().toString().trim());
                 listViewItemList.get(listViewItemList.size()-1).setDesc(descEditView.getText().toString().trim());
                 listViewItemList.get(listViewItemList.size()-1).setMajor(majorEditView.getText().toString().trim());
-//                addItem(R.drawable.image_gallery,titleEditView.getText().toString().trim(),descEditView.getText().toString().trim(),
-//                        majorEditView.getText().toString().trim());
+                updateMenu(pos, 0, titleEditView.getText().toString().trim(), descEditView.getText().toString().trim(), majorEditView.getText().toString().trim());
+            }
+        });
+
+        iconImageView.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(ACTION_GET_CONTENT);
+                //startActivityForResult(CustomerMenu.class, intent, ACTION_GET_CONTENT, null);
             }
         });
 
@@ -137,9 +149,25 @@ public class ListViewAdapter extends BaseAdapter {
         item.setTitle(title);
         item.setDesc(desc);
         item.setMajor(major);
-
         listViewItemList.add(item);
     }
 
+    void deleteMenu(String menuname){
+        //Dbhelper의 쓰기모드 객체를 가져옴
+        database = helper.getReadableDatabase();
+
+        String sql = "DELETE FROM test where menutitle="+"'"+ menuname + "'";
+        database.execSQL(sql); //만들어준 쿼리문 실행
+
+        updateReceiptsList(listViewItemList);    }
+
+    void updateMenu(int pos, int image, String menuname, String price, String major){
+        //Dbhelper의 쓰기모드 객체를 가져옴
+        database = helper.getReadableDatabase();
+
+        String sql = "UPDATE test SET menuicon='" + image + "', menutitle='" + menuname + "', menudesc='" + price + "', menumajor='" + major + "' WHERE _id='" + pos + "'";
+        database.execSQL(sql); //만들어준 쿼리문 실행
+
+        updateReceiptsList(listViewItemList);    }
 
 }

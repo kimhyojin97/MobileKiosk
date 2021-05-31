@@ -23,7 +23,6 @@ public class OrderList extends Fragment {
     SQLiteDatabase db;
     Bundle args;
     int pos = -1;
-
     final static String dbName = "order.db";
     final static int dbVersion = 1;
     public interface OnOrderSelectedListener{
@@ -79,5 +78,4 @@ public class OrderList extends Fragment {
 
         cursor.close();
     }
-
 }

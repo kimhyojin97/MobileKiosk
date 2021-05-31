@@ -29,7 +29,8 @@ public class StartSelect extends AppCompatActivity {
         userSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 구현 준비 중
+                Intent intent = new Intent(getApplicationContext(),TypeSelect.class);//수정
+                startActivity(intent);
             }
         });
     }

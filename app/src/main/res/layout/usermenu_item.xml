@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/u_menuimage"
+        android:layout_width="126dp"
+        android:layout_height="122dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="323dp"
+        android:layout_height="122dp"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/u_menuname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="메뉴명"
+            android:textColor="#000000"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/u_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="가격"
+            android:textColor="#666666"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/u_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="주성분"
+            android:textColor="#666666"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addcartbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="121dp"
+        android:layout_weight="1"
+        android:text="담기" />
+
+</LinearLayout>

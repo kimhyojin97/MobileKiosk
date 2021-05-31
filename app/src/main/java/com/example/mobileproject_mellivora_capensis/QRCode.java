@@ -6,10 +6,10 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.google.zxing.BarcodeFormat;
+/*import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.journeyapps.barcodescanner.BarcodeEncoder;*/
 
 public class QRCode extends AppCompatActivity {
 
@@ -22,10 +22,10 @@ public class QRCode extends AppCompatActivity {
 
         String value = "테스트";
 
-        createQRcode(barCode, value);
+        //createQRcode(barCode, value);
     }
 
-    public void createQRcode(ImageView img, String text) {
+/*    public void createQRcode(ImageView img, String text) {
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
@@ -35,5 +35,5 @@ public class QRCode extends AppCompatActivity {
             img.setImageBitmap(bitmap);
         } catch (Exception e) {
         }
-    }
+    }*/
 }

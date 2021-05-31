@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileProject_Mellivoracapensis">
-        <activity android:name=".QRCode"></activity>
+        <activity android:name=".TypeSelect"></activity>
         <activity android:name=".StartSelect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".CustomerMenu" />
         <activity android:name=".CustomerOrder" />
+        <activity android:name=".UserMenu" />
+
     </application>
 
 </manifest>
