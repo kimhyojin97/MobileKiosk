@@ -1,6 +1,7 @@
 package com.example.mobileproject_mellivora_capensis;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ public class UserMenuAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> umenuList = new ArrayList<ListViewItem>() ;
     private ArrayList<ListViewItem> cartList = new ArrayList<ListViewItem>() ;
     private int nListCnt = 0;
+    //private int count = 0;
 
     public UserMenuAdapter() {
 
@@ -54,13 +56,34 @@ public class UserMenuAdapter extends BaseAdapter {
         descTextView.setText(cartViewItem.getDesc());
         majorTextView.setText(cartViewItem.getMajor());
 
+        TextView tvCount=convertView.findViewById(R.id.tv_count);
+
         Button addCartButton = (Button)convertView.findViewById(R.id.addcartbutton);
         addCartButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
-                addCart(R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim());
+                addCart(R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
+            }
+        });
 
+        Button addCountButton = (Button)convertView.findViewById(R.id.btn_add);
+        addCountButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count = Integer.parseInt(tvCount.getText().toString());
+                tvCount.setText(String.valueOf(++count));
+            }
+        });
+
+        Button minuConutButton = (Button)convertView.findViewById(R.id.btn_minus);
+        minuConutButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int count = Integer.parseInt(tvCount.getText().toString());
+                if(count>0) {
+                    tvCount.setText(String.valueOf(--count));
+                }
             }
         });
 
@@ -86,12 +109,13 @@ public class UserMenuAdapter extends BaseAdapter {
         umenuList.add(item);
     }
 
-    public void addCart(int icon, String title, String desc) {
+    public void addCart(int icon, String title, String desc, int n) {
         ListViewItem item = new ListViewItem();
 
         item.setIcon(icon);
         item.setTitle(title);
         item.setDesc(desc);
+        item.setCount(n);
         cartList.add(item);
     }
 }
