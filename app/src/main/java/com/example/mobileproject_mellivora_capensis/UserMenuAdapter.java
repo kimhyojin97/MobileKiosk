@@ -19,6 +19,7 @@ public class UserMenuAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> cartList = new ArrayList<ListViewItem>() ;
     private int nListCnt = 0;
     //private int count = 0;
+    private ArrayList<Integer> selectMenu = new ArrayList<Integer>();
 
     public UserMenuAdapter() {
 
@@ -63,7 +64,7 @@ public class UserMenuAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
-                addCart(R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
+                addCart(pos, R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
             }
         });
 
@@ -109,13 +110,24 @@ public class UserMenuAdapter extends BaseAdapter {
         umenuList.add(item);
     }
 
-    public void addCart(int icon, String title, String desc, int n) {
+    public void addCart(int pos, int icon, String title, String desc, int n) {
         ListViewItem item = new ListViewItem();
-
+        item.setPos(pos);
         item.setIcon(icon);
         item.setTitle(title);
         item.setDesc(desc);
         item.setCount(n);
         cartList.add(item);
     }
+
+    //카트 아이템 수량 넘기기
+    public int getCartItemCount(int position) {
+        return cartList.get(position).getCount();
+    }
+    //카트 아이템 id 넘기기
+    public int getCartItemId(int position){
+        return cartList.get(position).getPos();
+    }
+    public int getCartsize(){ return cartList.size();}
+
 }

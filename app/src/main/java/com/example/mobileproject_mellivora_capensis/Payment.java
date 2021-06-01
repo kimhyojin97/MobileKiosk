@@ -30,12 +30,13 @@ public class Payment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
         menuHelper = new MenuDBHelper(this, "menu.db", null, 1);
         orderHelper = new OrderDBHelper(this, "order.db", null, 1);
 
-        //주문 activity에서 arraylist 받아오기 -costomerMenu class와 연계
+        //주문 activity에서 arraylist 받아오기 -UserMenu와 연계
         Intent intent = getIntent();
-        bundle = intent.getExtras();
+        bundle = intent.getBundleExtra("bundle");
         orderMenuArray = bundle.getIntegerArrayList("menu");
 
         //주문목록 채우기 및 totalPrice 계산
@@ -43,14 +44,14 @@ public class Payment extends AppCompatActivity {
 
         //totalPrice를 TextView에 setting
         TextView total = (TextView)findViewById(R.id.total_price);
-        total.setText(totalPrice);
+        total.setText(Integer.toString(totalPrice));
 
     }
 
 
     public void setOrderlist(){
         //주문목록 리스트뷰 어댑터 세팅
-        com.example.mobileproject_mellivora_capensis.OrderListAdapter customAdapter = new com.example.mobileproject_mellivora_capensis.OrderListAdapter();
+        OrderListAdapter customAdapter = new OrderListAdapter();
         ListView orderlist = (ListView)findViewById(R.id.orderlist);
         orderlist.setAdapter(customAdapter);
 
@@ -60,18 +61,19 @@ public class Payment extends AppCompatActivity {
         Cursor cursor = menuDB.rawQuery(sql, null);
 
         for(int i=0; i<orderMenuArray.size(); i++){
-            cursor.moveToPosition(orderMenuArray.get(i));
-            String menu = cursor.getString(2);
+            int menu_id = orderMenuArray.get(i);
+            cursor.moveToPosition(menu_id);
+            String menuName = cursor.getString(2);
             int cost = Integer.parseInt(cursor.getString(3));
-            int quan = bundle.getInt(menu);
+            int quan = bundle.getInt(Integer.toString(menu_id));
 
             totalPrice += cost * quan;
-            menus += menu + " " + quan;
+            menus += menuName + " " + quan;
 
             if(i+1 != orderMenuArray.size())
                 menus += ",";
 
-            customAdapter.addItem(menu, Integer.toString(quan)+"개", Integer.toString(cost * quan)+"원");
+            customAdapter.addItem(menuName, Integer.toString(quan)+"개", Integer.toString(cost * quan)+"원");
         }
         cursor.close();
     }
@@ -95,7 +97,7 @@ public class Payment extends AppCompatActivity {
         orderDB.execSQL("INSERT INTO TEST VALUES(NULL, '포장', '" + menus + "', '" + request + "', '" + time + "');");
 
         //주문완료 activity 연결
-        Intent intent = new Intent(this, com.example.mobileproject_mellivora_capensis.OrderCompleted.class);
+        Intent intent = new Intent(getApplicationContext(), OrderCompleted.class);
         startActivity(intent);
     }
 }

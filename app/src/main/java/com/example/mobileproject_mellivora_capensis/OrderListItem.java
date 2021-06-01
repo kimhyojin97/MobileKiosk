@@ -13,7 +13,6 @@ public class OrderListItem {
     public void setQuan(String quan) {
         quanStr = quan ;
     }
-
     public void setTotal(String total) {
         totalStr = total ;
     }
@@ -24,7 +23,6 @@ public class OrderListItem {
     public String getQuan() {
         return this.quanStr;
     }
-
     public String getTotal() {
         return this.totalStr;
     }

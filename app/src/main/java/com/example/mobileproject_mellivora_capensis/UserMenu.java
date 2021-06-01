@@ -30,6 +30,10 @@ public class UserMenu extends AppCompatActivity {
     MenuDBHelper helper;
     SQLiteDatabase database;
 
+    //결제페이지에서 필요한 변수
+    Bundle bundle;
+    UserMenuAdapter UMadapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +66,25 @@ public class UserMenu extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getApplicationContext(), UserMenu.class);
-                //startActivity(intent);
+
+                bundle = new Bundle();
+                int size = UMadapter.getCartsize();
+
+                ArrayList<Integer> selectMenu = new ArrayList<Integer>();
+                for(int i=0; i<size; i++){
+                    if(UMadapter.getCartItemCount(i) > 0){
+                        int ID = UMadapter.getCartItemId(i);
+                        int quan = UMadapter.getCartItemCount(i);
+                        selectMenu.add(ID);
+                        bundle.putInt(Integer.toString(ID), quan);
+                        //System.out.println(ID+" "+quan);
+                    }
+                }
+                bundle.putIntegerArrayList("menu", selectMenu);
+                Intent intent = new Intent(getApplicationContext(), Payment.class);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+
             }
         });
 
@@ -95,16 +116,17 @@ public class UserMenu extends AppCompatActivity {
         Cursor cursor = database.rawQuery(sql,null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
-        UserMenuAdapter adapter = new UserMenuAdapter();
+        UMadapter = new UserMenuAdapter();
 
         //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
         while(cursor.moveToNext()){
             //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
-            adapter.addItem(cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+            UMadapter.addItem(cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
         }
 
         //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
-        menulist.setAdapter(adapter);
+        menulist.setAdapter(UMadapter);
+
     }
 
     public void onBackPressed() {

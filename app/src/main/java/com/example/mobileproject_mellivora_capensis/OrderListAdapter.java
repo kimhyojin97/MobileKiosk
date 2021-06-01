@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class OrderListAdapter extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
-    private ArrayList<com.example.mobileproject_mellivora_capensis.OrderListItem> listViewItemList = new ArrayList<com.example.mobileproject_mellivora_capensis.OrderListItem>() ;
+    private ArrayList<OrderListItem> listViewItemList = new ArrayList<OrderListItem>() ;
 
     // ListViewAdapter의 생성자
     public OrderListAdapter() {
@@ -39,10 +39,10 @@ public class OrderListAdapter extends BaseAdapter {
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         TextView menuTextView = (TextView) convertView.findViewById(R.id.menu) ;
         TextView quanTextView = (TextView) convertView.findViewById(R.id.quan) ;
-        TextView totalTextView = (TextView) convertView.findViewById(R.id.quan) ;
+        TextView totalTextView = (TextView) convertView.findViewById(R.id.total) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        com.example.mobileproject_mellivora_capensis.OrderListItem listViewItem = listViewItemList.get(position);
+        OrderListItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         menuTextView.setText(listViewItem.getMenu());
@@ -66,7 +66,7 @@ public class OrderListAdapter extends BaseAdapter {
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
     public void addItem(String menu, String quan, String total) {
-        com.example.mobileproject_mellivora_capensis.OrderListItem item = new com.example.mobileproject_mellivora_capensis.OrderListItem();
+        OrderListItem item = new OrderListItem();
 
         item.setMenu(menu);
         item.setQuan(quan);
