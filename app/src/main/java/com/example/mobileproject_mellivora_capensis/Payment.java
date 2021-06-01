@@ -21,7 +21,7 @@ public class Payment extends AppCompatActivity {
     SQLiteDatabase menuDB;
     SQLiteDatabase orderDB;
     ArrayList<Integer> orderMenuArray; //주문한 메뉴의 db속 id number
-    String menus;
+    String menus = "";
     String request;
     Bundle bundle;
     int totalPrice = 0;
@@ -83,14 +83,14 @@ public class Payment extends AppCompatActivity {
         //현재시간
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy년 MM월 dd일 hh:mm:ss");
+        SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy년 MM월 dd일 hh:mm aa");
         String time = simpleDate.format(date);
 
         //요청사항
         EditText mRequest = (EditText)findViewById(R.id.request_edit);
         request = mRequest.getText().toString();
         if (request.length() == 0 )
-            request = " ";
+            request = "";
 
         //주문타입
         Intent intent = getIntent();
@@ -100,6 +100,7 @@ public class Payment extends AppCompatActivity {
         //Order DB에 주문 등록
         orderDB = orderHelper.getWritableDatabase();
         orderDB.execSQL("INSERT INTO TEST VALUES(NULL, '" + type + "', '" + menus + "', '" + request + "', '" + time + "');");
+
         String sql = "SELECT * FROM test ;";
         Cursor c = orderDB.rawQuery(sql, null);
 
