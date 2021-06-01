@@ -32,6 +32,7 @@ public class UserMenu extends AppCompatActivity {
 
     //결제페이지에서 필요한 변수
     Bundle bundle;
+    Bundle args;
     UserMenuAdapter UMadapter;
 
     @Override
@@ -62,14 +63,13 @@ public class UserMenu extends AppCompatActivity {
             }
         });
 
+        args = getIntent().getExtras();
         orderButton = (Button)findViewById(R.id.orderButton);
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 bundle = new Bundle();
                 int size = UMadapter.getCartsize();
-
                 ArrayList<Integer> selectMenu = new ArrayList<Integer>();
                 for(int i=0; i<size; i++){
                     if(UMadapter.getCartItemCount(i) > 0){
@@ -82,7 +82,8 @@ public class UserMenu extends AppCompatActivity {
                 }
                 bundle.putIntegerArrayList("menu", selectMenu);
                 Intent intent = new Intent(getApplicationContext(), Payment.class);
-                intent.putExtra("bundle", bundle);
+                intent.putExtra("order", bundle);
+                intent.putExtra("type", args);
                 startActivity(intent);
 
             }

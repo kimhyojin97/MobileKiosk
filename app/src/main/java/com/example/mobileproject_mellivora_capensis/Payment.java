@@ -36,7 +36,7 @@ public class Payment extends AppCompatActivity {
 
         //주문 activity에서 arraylist 받아오기 -UserMenu와 연계
         Intent intent = getIntent();
-        bundle = intent.getBundleExtra("bundle");
+        bundle = intent.getBundleExtra("order");
         orderMenuArray = bundle.getIntegerArrayList("menu");
 
         //주문목록 채우기 및 totalPrice 계산
@@ -92,13 +92,24 @@ public class Payment extends AppCompatActivity {
         if (request.length() == 0 )
             request = " ";
 
+        //주문타입
+        Intent intent = getIntent();
+        bundle = intent.getBundleExtra("type");
+        String type = bundle.getString("type");
+
         //Order DB에 주문 등록
         orderDB = orderHelper.getWritableDatabase();
-        orderDB.execSQL("INSERT INTO TEST VALUES(NULL, '포장', '" + menus + "', '" + request + "', '" + time + "');");
+        orderDB.execSQL("INSERT INTO TEST VALUES(NULL, '" + type + "', '" + menus + "', '" + request + "', '" + time + "');");
+        String sql = "SELECT * FROM test ;";
+        Cursor c = orderDB.rawQuery(sql, null);
 
         //주문완료 activity 연결
-        Intent intent = new Intent(getApplicationContext(), OrderCompleted.class);
-        startActivity(intent);
+        Intent newIntent = new Intent(getApplicationContext(), OrderCompleted.class);
+        Bundle args = new Bundle();
+        args.putInt("ID", c.getCount());
+        newIntent.putExtras(args);
+        startActivity(newIntent);
+        finish();
     }
 }
 

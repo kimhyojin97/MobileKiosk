@@ -24,8 +24,9 @@ public class TypeSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UserMenu.class);
-                startActivity(intent);
                 saveData("매장");
+                intent.putExtras(args);
+                startActivity(intent);
             }
         });
 
@@ -33,8 +34,9 @@ public class TypeSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UserMenu.class);
-                startActivity(intent);
                 saveData("포장");
+                intent.putExtras(args);
+                startActivity(intent);
             }
         });
 
