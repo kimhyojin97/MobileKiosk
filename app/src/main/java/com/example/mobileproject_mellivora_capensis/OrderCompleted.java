@@ -1,4 +1,4 @@
-package com.example.payment;
+package com.example.mobileproject_mellivora_capensis;
 
 import android.app.AppComponentFactory;
 import android.os.Bundle;

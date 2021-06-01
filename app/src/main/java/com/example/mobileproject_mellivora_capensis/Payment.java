@@ -1,4 +1,4 @@
-package com.example.payment;
+package com.example.mobileproject_mellivora_capensis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,7 +50,7 @@ public class Payment extends AppCompatActivity {
 
     public void setOrderlist(){
         //주문목록 리스트뷰 어댑터 세팅
-        OrderListAdapter customAdapter = new OrderListAdapter();
+        com.example.mobileproject_mellivora_capensis.OrderListAdapter customAdapter = new com.example.mobileproject_mellivora_capensis.OrderListAdapter();
         ListView orderlist = (ListView)findViewById(R.id.orderlist);
         orderlist.setAdapter(customAdapter);
 
@@ -95,7 +95,7 @@ public class Payment extends AppCompatActivity {
         orderDB.execSQL("INSERT INTO TEST VALUES(NULL, '포장', '" + menus + "', '" + request + "', '" + time + "');");
 
         //주문완료 activity 연결
-        Intent intent = new Intent(this, OrderCompleted.class);
+        Intent intent = new Intent(this, com.example.mobileproject_mellivora_capensis.OrderCompleted.class);
         startActivity(intent);
     }
 }
