@@ -68,24 +68,27 @@ public class UserMenu extends AppCompatActivity {
         orderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bundle = new Bundle();
                 int size = UMadapter.getCartsize();
-                ArrayList<Integer> selectMenu = new ArrayList<Integer>();
-                for(int i=0; i<size; i++){
-                    if(UMadapter.getCartItemCount(i) > 0){
-                        int ID = UMadapter.getCartItemId(i);
-                        int quan = UMadapter.getCartItemCount(i);
-                        selectMenu.add(ID);
-                        bundle.putInt(Integer.toString(ID), quan);
-                        //System.out.println(ID+" "+quan);
+                if(size > 0){bundle = new Bundle();
+                    ArrayList<Integer> selectMenu = new ArrayList<Integer>();
+                    for(int i=0; i<size; i++){
+                        if(UMadapter.getCartItemCount(i) > 0){
+                            int ID = UMadapter.getCartItemId(i);
+                            int quan = UMadapter.getCartItemCount(i);
+                            selectMenu.add(ID);
+                            bundle.putInt(Integer.toString(ID), quan);
+                            //System.out.println(ID+" "+quan);
+                        }
                     }
+                    bundle.putIntegerArrayList("menu", selectMenu);
+                    Intent intent = new Intent(getApplicationContext(), Payment.class);
+                    intent.putExtra("order", bundle);
+                    intent.putExtra("type", args);
+                    startActivity(intent);
                 }
-                bundle.putIntegerArrayList("menu", selectMenu);
-                Intent intent = new Intent(getApplicationContext(), Payment.class);
-                intent.putExtra("order", bundle);
-                intent.putExtra("type", args);
-                startActivity(intent);
-
+                else {
+                    Toast.makeText(getApplicationContext(),"장바구니가 비었습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
