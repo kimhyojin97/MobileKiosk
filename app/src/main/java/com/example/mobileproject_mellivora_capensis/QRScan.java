@@ -12,7 +12,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class QRScan extends AppCompatActivity {
     private IntentIntegrator qrScan;
-    public static int getId = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +32,6 @@ public class QRScan extends AppCompatActivity {
                 // todo
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-                getId = Integer.parseInt(result.getContents());
-                Intent intent = new Intent(getApplicationContext(),UserMenu.class);
-                startActivity(intent);
                 // todo
             }
         } else {
