@@ -24,6 +24,8 @@
         <activity android:name=".CustomerMenu" />
         <activity android:name=".CustomerOrder" />
         <activity android:name=".UserMenu" />
+        <activity android:name=".Payment" />
+        <activity android:name=".OrderCompleted" />
 
     </application>
 

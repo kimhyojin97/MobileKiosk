@@ -37,7 +37,9 @@ public class OrderSheet extends Fragment {
             }
 
             TextView menus = getActivity().findViewById(R.id.menus);
-            menus.setText(args.getString("menus"));
+            String s = args.getString("menus");
+            s = s.replace(",", "\n");
+            menus.setText(s);
 
             TextView request = getActivity().findViewById(R.id.request);
             request.setText(args.getString("request"));
