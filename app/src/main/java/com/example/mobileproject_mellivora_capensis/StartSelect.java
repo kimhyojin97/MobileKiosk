@@ -30,7 +30,6 @@ public class StartSelect extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),QRScan.class);
-
                 startActivity(intent);
             }
         });
