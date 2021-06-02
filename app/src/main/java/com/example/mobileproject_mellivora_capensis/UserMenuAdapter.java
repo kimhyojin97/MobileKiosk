@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,7 +17,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class UserMenuAdapter extends BaseAdapter {
+public class UserMenuAdapter extends BaseAdapter implements Filterable {
+    Filter listFilter;
     private ArrayList<ListViewItem> umenuList = new ArrayList<ListViewItem>() ;
     private ArrayList<ListViewItem> cartList = new ArrayList<ListViewItem>() ;
     private int nListCnt = 0;
@@ -25,6 +28,15 @@ public class UserMenuAdapter extends BaseAdapter {
 
     public UserMenuAdapter() {
 
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (listFilter == null) {
+            listFilter = new ListFilter() ;
+        }
+
+        return listFilter ;
     }
 
     @Override
@@ -148,5 +160,45 @@ public class UserMenuAdapter extends BaseAdapter {
         return cartList.get(position).getPos();
     }
     public int getCartsize(){ return cartList.size();}
+
+    private class ListFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults() ;
+            if (constraint == null || constraint.length() == 0) {
+                results.values = umenuList ;
+                results.count = umenuList.size() ;
+
+            } else {
+                ArrayList<ListViewItem> itemList = new ArrayList<ListViewItem>() ;
+                for (ListViewItem item : umenuList) {
+                    if (item.getTitle().contains(constraint.toString()) ||
+                            item.getMajor().contains(constraint.toString()))
+                    {
+                        itemList.add(item) ;
+                    }
+                }
+
+                results.values = itemList ;
+                results.count = itemList.size() ;
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+            // update listview by filtered data list.
+            umenuList = (ArrayList<ListViewItem>) results.values ;
+
+            // notify
+            if (results.count > 0) {
+                notifyDataSetChanged() ;
+            } else {
+                notifyDataSetInvalidated() ;
+            }
+        }
+    }
 
 }

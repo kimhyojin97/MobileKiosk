@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,8 +21,7 @@ import java.util.ArrayList;
 
 public class UserMenu extends AppCompatActivity {
     Button orderButton;
-    Button cancelButton;
-    Button addCartButton;
+    Button searchButton;
 
     TextView titleTextView;
     TextView descTextView;
@@ -29,6 +31,7 @@ public class UserMenu extends AppCompatActivity {
     ListView cartlist ;
     MenuDBHelper helper;
     SQLiteDatabase database;
+
 
     //결제페이지에서 필요한 변수
     Bundle bundle;
@@ -44,6 +47,33 @@ public class UserMenu extends AppCompatActivity {
         cartlist = (ListView) findViewById(R.id.cartlist);
         helper = new MenuDBHelper(this, "menu.db", null, 1);
 
+        EditText editTextFilter = (EditText)findViewById(R.id.editTextFilter) ;
+        editTextFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable edit) {
+                searchButton = (Button)findViewById(R.id.searchBtn);
+                searchButton.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        displayList();
+                        String filterText = edit.toString() ;
+                        if (filterText.length() > 0) {
+                            menulist.setFilterText(filterText) ;
+                        } else {
+                            menulist.clearTextFilter() ;
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        }) ;
         displayList();
         //CartAdapter adapter = new CartAdapter();
         //cartlist.setAdapter(adapter);

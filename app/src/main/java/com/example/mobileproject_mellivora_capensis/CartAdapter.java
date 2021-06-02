@@ -1,6 +1,7 @@
 package com.example.mobileproject_mellivora_capensis;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class CartAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> cartList = new ArrayList<ListViewItem>() ;
     private int nListCnt = 0;
+    Bundle args;
 
     public CartAdapter() {
 
