@@ -75,7 +75,9 @@ public class CustomerMenu extends AppCompatActivity {
         //목록의 개수만큼 순회하여 adapter에 있는 list배열에 add
         while(cursor.moveToNext()){
             //num 행은 가장 첫번째에 있으니 0번이 되고, name은 1번
-            adapter.addItem(cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+            if (cursor != null) {
+                adapter.addItem(cursor.getInt(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+            }
         }
 
         //리스트뷰의 어댑터 대상을 여태 설계한 adapter로 설정
