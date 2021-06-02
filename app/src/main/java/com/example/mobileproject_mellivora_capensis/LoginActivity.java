@@ -21,8 +21,9 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText id;
     EditText password;
-
-    public static String userId;
+    
+    String userId;
+    static public int u_id;
 
     boolean userExist;
 
@@ -79,14 +80,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public void searchData(String isId, String isPass) {
         newDB = helper.getReadableDatabase();
-        String sql = ("select userId, password, sName from test");
+        String sql = ("select _id, userId, password, sName from test");
         Cursor cursor = newDB.rawQuery(sql, null);
 
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
-            String id = cursor.getString(0);
-            String password = cursor.getString(1);
+            int num = cursor.getInt(0);
+            String id = cursor.getString(1);
+            String password = cursor.getString(2);
             if (id.equals(isId) && password.equals(isPass)) {
+                u_id = num;
                 userId = id;
                 userExist = true;
                 break;

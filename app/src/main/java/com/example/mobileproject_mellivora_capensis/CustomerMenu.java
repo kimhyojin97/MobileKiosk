@@ -45,7 +45,7 @@ public class CustomerMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CustomerMenu.this,"추가되었습니다.", Toast.LENGTH_SHORT).show();
-                insertMenu(0,"메뉴명 입력","가격 입력","주성분 입력");
+                insertMenu(LoginActivity.u_id, 0,"메뉴명 입력","가격 입력","주성분 입력");
             }
         });
 
@@ -65,8 +65,9 @@ public class CustomerMenu extends AppCompatActivity {
         database = helper.getReadableDatabase();
 
         //Cursor라는 그릇에 목록을 담아주기
-        String sql = "SELECT * FROM test;";
-        Cursor cursor = database.rawQuery(sql,null);
+        String sql = "SELECT * FROM test WHERE _id=";
+        String sql2 = sql + LoginActivity.u_id+ ";";
+        Cursor cursor = database.rawQuery(sql2,null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
         ListViewAdapter adapter = new ListViewAdapter();
@@ -81,10 +82,10 @@ public class CustomerMenu extends AppCompatActivity {
         listview.setAdapter(adapter);
     }
 
-    void insertMenu(int image, String menuname, String price, String major){
-        //Dbhelper의 쓰기모드 객체를 가져옴
+    void insertMenu(int id, int image, String menuname, String price, String major){
+        //Dbhelper의 쓰기모드 객체를 가져옴 + id + ", '"
         database = helper.getReadableDatabase();
-        String sql = "INSERT INTO test(menuicon, menutitle, menudesc, menumajor) VALUES('"+image+ "', '" + menuname + "', '" + price + "', '" + major + "')";
+        String sql = "INSERT INTO test VALUES(" + id + ", " + R.drawable.image_gallery+ ", '" + menuname + "', '" + price + "', '" + major + "')";
         database.execSQL(sql); //만들어준 쿼리문 실행
         displayList();
     }

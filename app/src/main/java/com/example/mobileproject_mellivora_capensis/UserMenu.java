@@ -113,8 +113,9 @@ public class UserMenu extends AppCompatActivity {
         database = helper.getReadableDatabase();
 
         //Cursor라는 그릇에 목록을 담아주기
-        String sql = "SELECT * FROM test;";
-        Cursor cursor = database.rawQuery(sql,null);
+        String sql = "SELECT * FROM test WHERE _id=";
+        String sql2 = sql + 1+ ";";
+        Cursor cursor = database.rawQuery(sql2,null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
         UMadapter = new UserMenuAdapter();

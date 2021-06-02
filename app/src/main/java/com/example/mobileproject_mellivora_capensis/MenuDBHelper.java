@@ -13,11 +13,11 @@ public class MenuDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        sql = "CREATE TABLE test (_id INTEGER PRIMARY KEY AUTOINCREMENT," + " menuicon INTEGER, menutitle TEXT, menudesc TEXT, menumajor TEXT);";
+        sql = "CREATE TABLE test (_id INTEGER, " + " menuicon INTEGER, menutitle TEXT, menudesc TEXT, menumajor TEXT);";
         db.execSQL(sql);
-        db.execSQL("INSERT INTO TEST VALUES(NULL, 0, '매운떡볶이', '3500', '고추장, 쌀떡, 오뎅');");
-        db.execSQL("INSERT INTO TEST VALUES(NULL, 0, '로제떡볶이', '4000', '우유, 치즈, 누들떡, 차돌');");
-        db.execSQL("INSERT INTO TEST VALUES(NULL, 0, '짜장떡볶이', '3000', '춘장, 밀떡, 계란');");
+        db.execSQL("INSERT INTO TEST VALUES(1, R.drawable.image_gallery, '매운떡볶이', '3500', '고추장, 쌀떡, 오뎅');");
+        db.execSQL("INSERT INTO TEST VALUES(2, R.drawable.image_gallery, '로제떡볶이', '4000', '우유, 치즈, 누들떡, 차돌');");
+        db.execSQL("INSERT INTO TEST VALUES(3, R.drawable.image_gallery, '짜장떡볶이', '3000', '춘장, 밀떡, 계란');");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
