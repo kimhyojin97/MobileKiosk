@@ -33,7 +33,7 @@ public class QRScan extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 getId = Integer.parseInt(result.getContents());
-                Intent intent = new Intent(getApplicationContext(),TypeSelect.class);
+                Intent intent = new Intent(getApplicationContext(),UserMenu.class);
                 startActivity(intent);
                 // todo
             }

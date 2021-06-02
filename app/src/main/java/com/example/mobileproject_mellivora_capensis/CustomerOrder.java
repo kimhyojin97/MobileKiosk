@@ -12,6 +12,7 @@ public class CustomerOrder extends AppCompatActivity implements OrderList.OnOrde
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customerorder);
+
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();
         ft.replace(R.id.orderlist_fragment, new OrderList());
