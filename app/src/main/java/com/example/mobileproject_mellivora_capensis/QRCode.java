@@ -20,7 +20,7 @@ public class QRCode extends AppCompatActivity {
 
         ImageView barCode = (ImageView) findViewById(R.id.img_barcode);
 
-        String value = "테스트";
+        String value = LoginActivity.userId;
 
         createQRcode(barCode, value);
     }
@@ -29,7 +29,7 @@ public class QRCode extends AppCompatActivity {
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 200, 200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE, 400, 400);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             img.setImageBitmap(bitmap);

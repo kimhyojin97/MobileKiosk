@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText id;
     EditText password;
 
-    String userId;
+    public static String userId;
 
     boolean userExist;
 
