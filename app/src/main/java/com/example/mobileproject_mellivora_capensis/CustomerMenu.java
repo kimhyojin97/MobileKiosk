@@ -45,7 +45,7 @@ public class CustomerMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(CustomerMenu.this,"추가되었습니다.", Toast.LENGTH_SHORT).show();
-                insertMenu(LoginActivity.u_id, 0,"메뉴명 입력","가격 입력","주성분 입력");
+                insertMenu(LoginActivity.u_id, R.drawable.image_gallery2,"메뉴명 입력","가격 입력","주성분 입력");
             }
         });
 
@@ -87,7 +87,7 @@ public class CustomerMenu extends AppCompatActivity {
     void insertMenu(int id, int image, String menuname, String price, String major){
         //Dbhelper의 쓰기모드 객체를 가져옴 + id + ", '"
         database = helper.getReadableDatabase();
-        String sql = "INSERT INTO test VALUES(" + id + ", " + R.drawable.image_gallery+ ", '" + menuname + "', '" + price + "', '" + major + "')";
+        String sql = "INSERT INTO test VALUES(" + id + ", " + image+ ", '" + menuname + "', '" + price + "', '" + major + "')";
         database.execSQL(sql); //만들어준 쿼리문 실행
         displayList();
     }

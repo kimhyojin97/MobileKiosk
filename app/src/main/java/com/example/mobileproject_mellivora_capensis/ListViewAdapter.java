@@ -109,11 +109,13 @@ public class ListViewAdapter extends BaseAdapter {
                 descEditView.setClickable(false);
                 majorEditView.setEnabled(false);
                 majorEditView.setClickable(false);
+                String mname = listViewItemList.get(listViewItemList.size()-1).getTitle();
                 listViewItemList.get(listViewItemList.size()-1).setIcon(R.drawable.image_gallery);
                 listViewItemList.get(listViewItemList.size()-1).setTitle(titleEditView.getText().toString().trim());
                 listViewItemList.get(listViewItemList.size()-1).setDesc(descEditView.getText().toString().trim());
                 listViewItemList.get(listViewItemList.size()-1).setMajor(majorEditView.getText().toString().trim());
-                updateMenu(pos, 0, titleEditView.getText().toString().trim(), descEditView.getText().toString().trim(), majorEditView.getText().toString().trim());
+
+                updateMenu(mname, 0, titleEditView.getText().toString().trim(), descEditView.getText().toString().trim(), majorEditView.getText().toString().trim());
             }
         });
 
@@ -161,11 +163,11 @@ public class ListViewAdapter extends BaseAdapter {
 
         updateReceiptsList(listViewItemList);    }
 
-    void updateMenu(int pos, int image, String menuname, String price, String major){
+    void updateMenu(String mname, int image, String menuname, String price, String major){
         //Dbhelper의 쓰기모드 객체를 가져옴
         database = helper.getReadableDatabase();
 
-        String sql = "UPDATE test SET menuicon='" + image + "', menutitle='" + menuname + "', menudesc='" + price + "', menumajor='" + major + "' WHERE _id='" + pos + "'";
+        String sql = "UPDATE test SET menuicon='" + R.drawable.image_gallery3 + "', menutitle='" + menuname + "', menudesc='" + price + "', menumajor='" + major + "' WHERE menutitle='" + mname + "'";
         database.execSQL(sql); //만들어준 쿼리문 실행
 
         updateReceiptsList(listViewItemList);    }
