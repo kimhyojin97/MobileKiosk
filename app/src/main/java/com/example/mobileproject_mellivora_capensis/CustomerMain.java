@@ -50,4 +50,9 @@ public class CustomerMain extends AppCompatActivity {
         });
 
     }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+    }
 }
