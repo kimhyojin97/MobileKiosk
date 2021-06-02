@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ public class UserMenuAdapter extends BaseAdapter {
     private ArrayList<ListViewItem> umenuList = new ArrayList<ListViewItem>() ;
     private ArrayList<ListViewItem> cartList = new ArrayList<ListViewItem>() ;
     private int nListCnt = 0;
-    //private int count = 0;
+    //ListView cartview;
 
     public UserMenuAdapter() {
 
@@ -38,6 +39,7 @@ public class UserMenuAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final int pos = position;
         final Context context = parent.getContext();
+        //cartview = (ListView) convertView.findViewById(R.id.cartlist);
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -62,8 +64,22 @@ public class UserMenuAdapter extends BaseAdapter {
         addCartButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
-                addCart(R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
+                //Toast.makeText(context,"장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
+                //CartAdapter adapter = new CartAdapter();
+                if (cartList.size() > 0){
+                    for (int i=0; i < cartList.size(); i++) {
+                        if (cartList.get(i).getTitle().equals(titleTextView.getText().toString().trim())) {
+                            int reCount = Integer.parseInt(tvCount.getText().toString());
+                            cartList.get(i).setCount(getCount()+reCount);
+
+                        } else {
+                            addCart(R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
+                        }
+                    }
+                }else {
+                    addCart(R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
+                }
+                //cartview.setAdapter(adapter);
             }
         });
 

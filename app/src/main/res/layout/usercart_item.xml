@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="103dp"
-        android:layout_height="135dp"
+        android:layout_height="153dp"
         android:layout_margin="8dp"
         android:background="#eaeaea">
 
@@ -27,12 +27,38 @@
             android:layout_marginTop="3dp"
             android:text="메뉴명" />
 
+        <TextView
+            android:id="@+id/c_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/c_menuname"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="49dp"
+            android:layout_marginLeft="49dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="46dp"
+            android:layout_marginRight="46dp"
+            android:text="0" />
+
         <Button
             android:id="@+id/cancelButton"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:layout_below="@+id/c_menuname"
+            android:layout_below="@+id/c_count"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="-3dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
             android:text="취소" />
 
     </RelativeLayout>

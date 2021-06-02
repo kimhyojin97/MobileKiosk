@@ -10,20 +10,26 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.content.Intent.ACTION_GET_CONTENT;
 
 public class CustomerMenu extends AppCompatActivity {
     Button add;
     ListView listview ;
     MenuDBHelper helper;
     SQLiteDatabase database;
+    ImageView iconImageView;
+    private final int GET_GALLERY_IMAGE =200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,16 @@ public class CustomerMenu extends AppCompatActivity {
                 insertMenu(0,"메뉴명 입력","가격 입력","주성분 입력");
             }
         });
+
+/*        iconImageView = (ImageView)findViewById(R.id.menuimage) ;
+        iconImageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                intent.setAction(ACTION_GET_CONTENT);
+                startActivityForResult(intent, GET_GALLERY_IMAGE);
+            }
+        });*/
 
     }
 
@@ -76,6 +92,15 @@ public class CustomerMenu extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(), CustomerMain.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GET_GALLERY_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri selectedImageUri = data.getData();
+            iconImageView.setImageURI(selectedImageUri);
+        }
     }
 
 }

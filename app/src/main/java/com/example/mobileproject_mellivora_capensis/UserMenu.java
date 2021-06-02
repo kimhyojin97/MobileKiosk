@@ -40,11 +40,8 @@ public class UserMenu extends AppCompatActivity {
         helper = new MenuDBHelper(this, "menu.db", null, 1);
 
         displayList();
-        CartAdapter adapter = new CartAdapter();
-        cartlist.setAdapter(adapter);
-
-        //UserMenuAdapter adapter = new UserMenuAdapter();
-        //adapter.addCart(R.drawable.image_gallery, "매운떡볶이", "3500원");
+        //CartAdapter adapter = new CartAdapter();
+        //cartlist.setAdapter(adapter);
 
         cartlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

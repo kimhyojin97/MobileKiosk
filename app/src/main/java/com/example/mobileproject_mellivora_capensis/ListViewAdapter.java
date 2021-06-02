@@ -122,7 +122,7 @@ public class ListViewAdapter extends BaseAdapter {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(ACTION_GET_CONTENT);
-                //startActivityForResult(CustomerMenu.class, intent, ACTION_GET_CONTENT, null);
+                //startActivityForResult(MainActivity.class,intent);
             }
         });
 

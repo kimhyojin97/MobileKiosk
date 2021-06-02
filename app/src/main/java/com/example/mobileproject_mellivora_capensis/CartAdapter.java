@@ -43,11 +43,13 @@ public class CartAdapter extends BaseAdapter {
 
         ImageView iconImageView_c = (ImageView) convertView.findViewById(R.id.c_icon) ;
         TextView titleTextView_c = (TextView) convertView.findViewById(R.id.c_menuname);
+        TextView CountTextView_c = (TextView) convertView.findViewById(R.id.c_count);
 
         ListViewItem cartViewItem = cartList.get(position);
 
         iconImageView_c.setImageResource(cartViewItem.getIcon());
         titleTextView_c.setText(cartViewItem.getTitle());
+        CountTextView_c.setText(cartViewItem.getCount());
 
         Button cancelButton = (Button)convertView.findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(new Button.OnClickListener() {
@@ -59,17 +61,16 @@ public class CartAdapter extends BaseAdapter {
                 }
             }
         });
-
         return convertView;
     }
 
     public long getItemId(int position) {
-        return position ;
+        return position;
     }
 
     @Override
     public Object getItem(int position) {
-        return cartList.get(position) ;
+        return cartList.get(position);
     }
 
 }
