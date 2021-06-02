@@ -114,7 +114,7 @@ public class UserMenu extends AppCompatActivity {
 
         //Cursor라는 그릇에 목록을 담아주기
         String sql = "SELECT * FROM test WHERE _id=";
-        String sql2 = sql + 1+ ";";
+        String sql2 = sql + QRScan.getId+ ";";
         Cursor cursor = database.rawQuery(sql2,null);
 
         //리스트뷰에 목록 채워주는 도구인 adapter준비
