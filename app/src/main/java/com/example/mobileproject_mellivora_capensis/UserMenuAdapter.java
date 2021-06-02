@@ -81,16 +81,16 @@ public class UserMenuAdapter extends BaseAdapter implements Filterable {
 
                 Toast.makeText(context,"장바구니에 담겼습니다.", Toast.LENGTH_SHORT).show();
                 //CartAdapter adapter = new CartAdapter();
+                boolean bool = false;
                 if (cartList.size() > 0){
                     for (int i=0; i < cartList.size(); i++) {
                         if (cartList.get(i).getTitle().equals(titleTextView.getText().toString().trim())) {
                             int reCount = Integer.parseInt(tvCount.getText().toString());
                             cartList.get(i).setCount( cartList.get(i).getCount()+reCount);
-                        }
-                        else  {
-                            addCart(pos, R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
+                            bool = true;
                         }
                     }
+                    if(!bool) addCart(pos, R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
                 }else  {
                     addCart(pos, R.drawable.image_gallery2, titleTextView.getText().toString().trim(), descTextView.getText().toString().trim(), Integer.parseInt(tvCount.getText().toString()));
 
