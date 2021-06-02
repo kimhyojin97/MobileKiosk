@@ -7,6 +7,8 @@ public class ListViewItem {
     private String titleStr ;
     private String descStr ;
     private String majorStr ;
+    private int count ;
+    private int position;
 
     public void setIcon(int icon) {
         iconDrawable = icon ;
@@ -20,6 +22,11 @@ public class ListViewItem {
     public void setMajor(String major) {
         majorStr = major ;
     }
+    public void setCount(int n) {
+        count = n ;
+    }
+    public void setPos(int pos) {position = pos;}
+
 
     public int getIcon() {
         return this.iconDrawable ;
@@ -33,4 +40,9 @@ public class ListViewItem {
     public String getMajor() {
         return this.majorStr ;
     }
+    public int getCount() {
+        return this.count ;
+    }
+    public int getPos() { return position;}
+
 }

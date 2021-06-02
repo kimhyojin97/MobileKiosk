@@ -14,16 +14,15 @@ import android.widget.SimpleCursorAdapter;
 import androidx.fragment.app.Fragment;
 
 import com.example.mobileproject_mellivora_capensis.CustomerOrder;
-import com.example.mobileproject_mellivora_capensis.DBHelperTest;
+import com.example.mobileproject_mellivora_capensis.OrderDBHelper;
 import com.example.mobileproject_mellivora_capensis.R;
 
 public class OrderList extends Fragment {
-    DBHelperTest dbHelperTest;
+    OrderDBHelper helper;
     ListView listView;
     SQLiteDatabase db;
     Bundle args;
     int pos = -1;
-
     final static String dbName = "order.db";
     final static int dbVersion = 1;
     public interface OnOrderSelectedListener{
@@ -36,9 +35,9 @@ public class OrderList extends Fragment {
         View view = inflater.inflate(R.layout.orderlist_fragment, container, false);
         inflater.inflate(R.layout.orderlist_fragment, container, false);
         listView = view.findViewById(R.id.order_list);
-        dbHelperTest = new DBHelperTest(getActivity(), dbName, null, dbVersion);
+        helper = new OrderDBHelper(getActivity(), dbName, null, dbVersion);
 
-        db = dbHelperTest.getWritableDatabase();
+        db = helper.getWritableDatabase();
         String sql = "SELECT * FROM test;";
         Cursor cursor = db.rawQuery(sql, null);
         String[] strs = new String[] {"_id"};
@@ -66,7 +65,7 @@ public class OrderList extends Fragment {
     }
 
     public void readData(int index){
-        db = dbHelperTest.getWritableDatabase();
+        db = helper.getWritableDatabase();
         String sql = "SELECT * FROM test ;";
         Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToPosition(index);
@@ -79,5 +78,4 @@ public class OrderList extends Fragment {
 
         cursor.close();
     }
-
 }

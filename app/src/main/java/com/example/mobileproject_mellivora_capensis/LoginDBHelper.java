@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class LoginDBHelper extends SQLiteOpenHelper {
+    String sql;
 
     public LoginDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -18,13 +19,6 @@ public class LoginDBHelper extends SQLiteOpenHelper {
                 + " userId text, "
                 + " password text, "
                 + " sName text);");
-
-        String menuTable = "test";
-        db.execSQL("create table if not exists " + userTable + " (" + " _id integer PRIMARY KEY autoincrement, "
-                + "menuicon text,"
-                + " menutitle text, "
-                + " menudesc text, "
-                + " menumajor  text);");
 
 //        String userSubjectTable = "test2";
 //        db.execSQL("create table if not exists " + userSubjectTable + " ("

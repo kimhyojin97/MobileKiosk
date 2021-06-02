@@ -19,6 +19,7 @@
             tools:replace="screenOrientation"/>
 
         <activity android:name=".QRCode" />
+        <activity android:name=".TypeSelect"></activity>
         <activity android:name=".StartSelect">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +33,10 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".CustomerMenu" />
         <activity android:name=".CustomerOrder" />
+        <activity android:name=".UserMenu" />
+        <activity android:name=".Payment" />
+        <activity android:name=".OrderCompleted" />
+
     </application>
 
 </manifest>
