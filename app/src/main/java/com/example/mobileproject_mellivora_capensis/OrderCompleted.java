@@ -17,4 +17,9 @@ public class OrderCompleted extends AppCompatActivity {
         TextView orderNum = (TextView)findViewById(R.id.orderId);
         orderNum.setText(Integer.toString(args.getInt("ID")));
     }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), TypeSelect.class);
+        startActivity(intent);
+    }
 }
