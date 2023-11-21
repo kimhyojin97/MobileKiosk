@@ -1,1 +1,1 @@
-# MobileProject_Mellivora-capensis
+# 모바일 키오스크
